@@ -1,0 +1,6 @@
+---
+- include: get_pubkey.yml
+- include: add_known_hosts.yml
+  with_items: "{{ ssh_access_targets }}"
+- include: set_authorized_key.yml
+  with_items: "{{ ssh_access_targets }}"

@@ -1,0 +1,15 @@
+---
+- set_fact:
+    current_target: "{{ item }}"
+- name: Ensure that target user exists
+  user:
+    name: "{{ current_target.username }}"
+    shell: /bin/bash
+  delegate_to: "{{ current_target.host }}"
+- name: Add pubkey to specified host
+  authorized_key: "user={{ current_target.username }} key={{ ssh_access_public_key }}"
+  delegate_to: "{{ current_target.host }}"
+- name: Add extra pubkeys to specified host
+  authorized_key: "user={{ current_target.username }} key={{ item }}"
+  delegate_to: "{{ current_target.host }}"
+  with_items: "{{ ssh_access_extra_pubkeys }}"

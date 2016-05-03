@@ -1,0 +1,11 @@
+---
+- name: scan for host key
+  shell: "ssh-keyscan -t rsa {{ item.host }}"
+  register: ssh_keyscan_result
+- name: Ensure that we have our host in known_hosts
+  known_hosts:
+    name: "{{ item.host }}"
+    key: "{{ ssh_keyscan_result.stdout }}"
+  become: yes
+  become_user: "{{ ssh_access_username }}"
+

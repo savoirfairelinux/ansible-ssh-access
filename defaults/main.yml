@@ -1,0 +1,9 @@
+---
+# Username that will have access to ssh_access_targets
+ssh_access_username: ""
+# Path of the private key to use for granting access
+ssh_access_private_key_path: "/home/{{ ssh_access_username }}/.ssh/id_rsa"
+# List of targets to have access to. Each item is a mapping with "host" and "username".
+ssh_access_targets: {}
+# List of extra, hardcoded ssh pubkeys to add to each target's authorized keys.
+ssh_access_extra_pubkeys: []
