@@ -1,4 +1,10 @@
 ---
+- name: Ensure that our user has a home
+  user:
+    name: "{{ ssh_access_username }}"
+    createhome: yes
+    generate_ssh_key: yes
+
 - name: Ensure that we have SSH keys to propagate
   shell: "ssh-keygen -t rsa -f {{ ssh_access_private_key_path }} -N ''"
   args:
