@@ -2,6 +2,7 @@
 - name: scan for host key
   shell: "ssh-keyscan -t rsa {{ item.host }}"
   register: ssh_keyscan_result
+  changed_when: False
 - name: Ensure that we have our host in known_hosts
   known_hosts:
     name: "{{ item.host }}"
