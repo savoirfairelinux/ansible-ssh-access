@@ -18,6 +18,7 @@
   # http://askubuntu.com/a/53555
   shell: "ssh-keygen -y -f {{ ssh_access_private_key_path }}"
   register: current_ssh_pubkey
+  changed_when: False
 
 - set_fact: "ssh_access_public_key={{ current_ssh_pubkey.stdout }}"
 
