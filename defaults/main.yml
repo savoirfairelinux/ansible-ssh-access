@@ -7,3 +7,5 @@ ssh_access_private_key_path: "/home/{{ ssh_access_username }}/.ssh/id_rsa"
 ssh_access_targets: {}
 # List of extra, hardcoded ssh pubkeys to add to each target's authorized keys.
 ssh_access_extra_pubkeys: []
+
+ssh_access_delegate_user: "{{ lookup('env', 'USER') }}"
