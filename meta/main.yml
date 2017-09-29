@@ -1,0 +1,7 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: "Savoir-faire Linux, Inc."
+  description: "Facilitates SSH access from one remote to other(s)."
+  min_ansible_version: 2.2

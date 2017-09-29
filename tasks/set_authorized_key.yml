@@ -1,6 +1,4 @@
 ---
-- set_fact:
-    current_target: "{{ item }}"
 - name: Ensure that target user exists
   user:
     name: "{{ current_target.username }}"
@@ -12,4 +10,4 @@
 - name: Add extra pubkeys to specified host
   authorized_key: "user={{ current_target.username }} key={{ item }}"
   delegate_to: "{{ ssh_access_delegate_user }}@{{ current_target.host }}"
-  with_items: ssh_access_extra_pubkeys
+  with_items: "{{ ssh_access_extra_pubkeys|difference(['']) }}"
