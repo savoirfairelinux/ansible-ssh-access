@@ -6,7 +6,8 @@
 - name: Ensure that we have our host in known_hosts
   known_hosts:
     name: "{{ item.host }}"
-    key: "{{ ssh_keyscan_result.stdout }}"
+    key: "{{ ssh_keyscan_result.stdout | default('NOT_AVAILABLE_IN_CHECK_MODE') }}"
+  when: not ansible_check_mode
   become: yes
   become_user: "{{ ssh_access_username }}"
 
