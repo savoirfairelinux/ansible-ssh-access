@@ -20,6 +20,8 @@
   register: current_ssh_pubkey
   changed_when: False
 
-- set_fact: "ssh_access_public_key={{ current_ssh_pubkey.stdout | default('NOT_AVAILABLE_IN_CHECK_MODE') }}"
+- set_fact: "ssh_access_public_key={{ current_ssh_pubkey.stdout }}"
+  when: not ansible_check_mode
 
 - debug: "msg={{ ssh_access_public_key }}"
+  when: not ansible_check_mode
