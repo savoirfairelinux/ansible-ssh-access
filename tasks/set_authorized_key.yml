@@ -5,6 +5,7 @@
     shell: /bin/bash
   delegate_to: "{{ ssh_access_delegate_user }}@{{ current_target.host }}"
 - name: Add pubkey to specified host
+  become: yes
   authorized_key: "user={{ current_target.username }} key={{ ssh_access_public_key }}"
   delegate_to: "{{ ssh_access_delegate_user }}@{{ current_target.host }}"
   when: not ansible_check_mode
