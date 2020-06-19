@@ -17,7 +17,7 @@
 - name: Change private key file permissions to allow next operation
   become: yes
   file:
-    path: /home/performcoop/.ssh/id_rsa
+    path: "{{ ssh_access_private_key_path }}"
     mode: 0644
 
 - name: Read or pub key
@@ -29,7 +29,7 @@
 - name: Revert changes to private key file permissions
   become: yes
   file:
-    path: /home/performcoop/.ssh/id_rsa
+    path: "{{ ssh_access_private_key_path }}"
     mode: 0600
 
 - set_fact: "ssh_access_public_key={{ current_ssh_pubkey.stdout }}"
