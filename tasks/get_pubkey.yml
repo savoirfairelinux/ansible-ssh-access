@@ -20,7 +20,7 @@
   become: yes
   file:
     path: "{{ ssh_access_private_key_path }}"
-    mode: 0644
+    mode: 0600
 
 - name: Read or pub key
   become: yes
