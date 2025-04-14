@@ -1,8 +1,8 @@
 ---
-- include: get_pubkey.yml
-- include: add_known_hosts.yml
+- import_tasks: get_pubkey.yml
+- include_tasks: add_known_hosts.yml
   with_items: "{{ ssh_access_targets }}"
-- include: set_authorized_key.yml
+- include_tasks: set_authorized_key.yml
   with_items: "{{ ssh_access_targets }}"
   loop_control:
     loop_var: current_target
